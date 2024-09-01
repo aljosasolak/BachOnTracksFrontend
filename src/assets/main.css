@@ -1,0 +1,63 @@
+@import './base.css';
+
+
+#app {
+    margin: 4rem auto;
+    padding: 2.5rem;
+    width: 920px;
+    min-height: 50vh;
+    background: linear-gradient(45deg, #1b047a, #3168eb, #5decf8);
+    background-size: 400% 400%;
+    border-radius: 75px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    animation: color 20s ease-in-out infinite;
+
+    h1 {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        background: #f2f2f2;
+        font-family: "Times New Roman", sans-serif;
+        font-size: 50px;
+        font-weight: bold;
+        font-style: italic;
+        color: #282828;
+        border-radius: 75px;
+    }
+
+    .round-button {
+        padding: 0 0;
+        border: none;
+        background: none;
+        transition: 0.5s all ease-in-out;
+
+        &:hover {
+            border-radius: 45px;
+            box-shadow: 0 0 15px #97938b;
+        }
+
+        &:active {
+            border: none;
+            border-radius: 45px;
+            box-shadow: 0 0 15px #97938b;
+        }
+    }
+}
+
+
+@keyframes color {
+    0% {
+        background-position: 0 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0 50%;
+    }
+}
+
+
+

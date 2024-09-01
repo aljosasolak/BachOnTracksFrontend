@@ -1,0 +1,194 @@
+    FROM THE Appointments component
+
+    <div v-show="appointments.length > 0">
+      <div v-for="appointment in appointments" v-bind:key="appointment.id" class="status-color">
+        <div class="appointment-field">
+          <h2 class="appointment-type">{{ appointment.type }}</h2>
+          <div class="display-grid">
+            <div class="detail-style">
+              <h6>Datum</h6>
+              <p> {{ appointment.date }} </p>
+            </div>
+            <div class="detail-style">
+              <h6>Hours</h6>
+              <p>{{ appointment.startingTime }} - {{ appointment.endingTime }}</p>
+            </div>
+            <div class="detail-style">
+              <h6>Status</h6>
+              <div v-if="appointment.status === 'CONFIRMED'">
+                <img src="../components/icons/confirmed-icon.png" width="20px" height="20px"
+                     title="Appointment confirmed"></div>
+              <div v-else>
+                <img src="../components/icons/questionmark-icon.png" width="20px" height="20px"
+                     title="Appointment not confirmed"></div>
+            </div>
+          </div>
+          <div class="display-grid">
+            <div class="detail-style">
+              <h6>Location</h6>
+              <p>{{ appointment.location }} </p>
+            </div>
+            <button><img src="../components/icons/edit-svgrepo-com.svg" title="Edit appointment"></button>
+            <button @clik.prevent="deleteAppointment(appointment.id)"><img src="../components/icons/delete-svgrepo-com.svg" title="Delete appointment"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  .status-color {
+    margin-top: -15px;
+    margin-bottom: 25px;
+    width: 100%;
+    padding: 8px;
+    border-radius: 25px;
+    background: linear-gradient(45deg, #f80a0a, #f60ed0);
+
+    .appointment-field {
+      padding: 1rem .5rem;
+      background-color: $warmWhite;
+      border-radius: 15px;
+      font-family: "Times New Roman", sans-serif;
+      font-size: 1.5rem;
+
+      .appointment-type {
+        margin-bottom: 10px;
+        font-size: 2.5rem;
+        text-align: center;
+        text-transform: uppercase;
+      }
+
+      .display-grid {
+        display: grid;
+        grid-template-columns: 130px 350px 50px;
+
+        .detail-style {
+          padding: 0px;
+          margin: 0 5px;
+
+          p {
+            padding-left: 4px;
+            font-size: 20px;
+            border: 1px solid $backgroundBlue;
+            border-radius: 10px;
+          }
+        }
+
+        button {
+          margin: 0 3px;
+          padding: 7px;
+          background: $backgroundBlue;
+          border-radius: 10px;
+          border: $warmWhite;
+          font-size: 20px;
+          color: $warmWhite;
+          font-weight: bold;
+          transition: all ease-in-out 0.3s;
+
+          &:hover {
+            color: #ffffff;
+            background: rgb(20, 5, 140);
+          }
+
+          img {
+            width: 25px;
+            height: 25px;
+          }
+        }
+      }
+    }
+  }
+
+  ----------------------------------------------------
+
+    .overlay {
+        position: absolute;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        right: auto;
+        bottom: auto;
+        background: rgba(0, 0, 0, .3);
+        transition: all ease-in-out .3s;
+        z-index: 8;
+        opacity: 0;
+        visibility: hidden;
+
+        &.visible {
+            visibility: visible;
+            opacity: 1;
+        }
+    }
+
+    .form-container {
+        position: absolute;
+        top: -50rem;
+        left: 765px;
+        animation: drop 0.6s ease-in-out forwards;
+        @keyframes drop {
+            0% {
+                opacity: 0
+            }
+            70% {
+                transform: translateY(67rem)
+            }
+            100% {
+                transform: translateY(65rem);
+                opacity: 1;
+            }
+        }
+        width: fit-content;
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: linear-gradient(45deg, #1b047a, #3168eb, #94f0f5, rgba(158, 231, 244, 0));
+        border: 2px solid #2c3e50;
+        border-radius: 75px;
+
+        .active-form {
+            padding: 3rem;
+            border: 2px solid rgb(17, 9, 92);
+            border-radius: 68px;
+            background-color: #faf6ee;
+
+            h2 {
+                margin-bottom: 8px;
+                padding: 10px;
+                border: 1px solid rgb(17, 9, 92);
+                font-family: "Times New Roman", sans-serif;
+                border-radius: 25px;
+                background-color: #ffffff;
+            }
+
+            label {
+                display: block;
+            }
+
+            input {
+                margin-bottom: 1rem;
+                height: 40px;
+                width: 250px;
+                display: block;
+            }
+
+            .button-div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                button {
+                    width: 80px;
+                    padding-top: 8px;
+                    padding-bottom: 8px;
+                    margin-left: 10px;
+                    background: rgb(17, 9, 92);
+                    border-radius: 25px;
+                    border-style: none;
+                    font-size: 20px;
+                    color: #faf6ee;
+                }
+            }
+        }
